@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "@remix-run/react";
 import Card from "~/Components/Card";
 
 function addMusician() {
@@ -14,13 +14,12 @@ function addMusician() {
               Artistes et concerts
             </p>
           </div>
-          <div id="choose" className="p-6 m-10 text-center">
-            <a
-              href="/"
-              className="p-4 text-xl font-medium transition duration-200 ease-in-out bg-gray-900 rounded-xl hover:shadow-lg hover:bg-indigo-600 hover:text-white"
-            >
-              Accueil
-            </a>
+          <div id="homepage" className="p-6 m-10 text-center">
+            <Link to="/">
+              <button className="p-4 text-xl font-medium transition duration-200 ease-in-out bg-gray-900 rounded-xl hover:shadow-lg hover:bg-indigo-600 hover:text-white">
+                Accueil
+              </button>
+            </Link>
           </div>
           <Card />
         </div>

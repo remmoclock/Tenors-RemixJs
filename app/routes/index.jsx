@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react";
 import Card from "~/Components/Card";
 
 export default function Index() {
@@ -11,13 +12,12 @@ export default function Index() {
               Artistes et concerts
             </p>
           </div>
-          <div id="choose" className="p-6 m-10 text-center">
-            <a
-              href="/addMusician"
-              className="p-4 text-xl font-medium transition duration-200 ease-in-out bg-gray-900 rounded-xl hover:shadow-lg hover:bg-indigo-600 hover:text-white"
-            >
-              Ajouter un musicien
-            </a>
+          <div id="homepage" className="p-6 m-10 text-center">
+            <Link to="/addMusician">
+              <button className="p-4 text-xl font-medium transition duration-200 ease-in-out bg-gray-900 rounded-xl hover:shadow-lg hover:bg-indigo-600 hover:text-white">
+                Ajouter un musicien
+              </button>
+            </Link>
           </div>
           <Card />
         </div>
