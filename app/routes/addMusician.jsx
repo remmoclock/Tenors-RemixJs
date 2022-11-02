@@ -6,17 +6,19 @@ function addMusician() {
       <div className="container px-4 mx-auto">
         <div>
           <div id="title" className="my-10 text-center">
-            <h1 className="text-4xl font-bold text-white">Ajouter un musicien 🎶</h1>
+            <h1 className="text-4xl font-bold text-white">
+              Ajouter un musicien 🎶
+            </h1>
             <p className="text-xl text-gray-500 text-light">
               Artistes et concerts
             </p>
           </div>
           <div id="choose" className="p-6 m-10 text-center">
             <a
-              href="/addMusician"
+              href="/"
               className="p-4 text-xl font-medium transition duration-200 ease-in-out bg-gray-900 rounded-xl hover:shadow-lg hover:bg-indigo-600 hover:text-white"
             >
-              Ajouter un musicien
+              Accueil
             </a>
           </div>
           <div className="flex justify-center">
