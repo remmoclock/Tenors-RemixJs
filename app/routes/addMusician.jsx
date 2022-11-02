@@ -1,4 +1,5 @@
 import { Link } from "@remix-run/react";
+import Button from "~/Components/Button";
 import Card from "~/Components/Card";
 
 function addMusician() {
@@ -16,9 +17,7 @@ function addMusician() {
           </div>
           <div id="homepage" className="p-6 m-10 text-center">
             <Link to="/">
-              <button className="p-4 text-xl font-medium transition duration-200 ease-in-out bg-gray-900 rounded-xl hover:shadow-lg hover:bg-indigo-600 hover:text-white">
-                Accueil
-              </button>
+              <Button title="Accueil" />
             </Link>
           </div>
           <Card />
