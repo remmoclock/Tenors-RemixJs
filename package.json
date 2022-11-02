@@ -1,6 +1,9 @@
 {
   "private": true,
   "sideEffects": false,
+  "prisma": {
+    "seed": "node --require esbuild-register prisma/seed.ts"
+  },
   "scripts": {
     "build": "npm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
@@ -21,6 +24,7 @@
     "@remix-run/eslint-config": "^1.7.4",
     "autoprefixer": "^10.4.13",
     "concurrently": "^7.5.0",
+    "esbuild-register": "^3.3.3",
     "eslint": "^8.23.1",
     "postcss": "^8.4.18",
     "prisma": "^4.5.0",
