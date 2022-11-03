@@ -1,5 +1,11 @@
 {
-  "include": ["**/*.js", "**/*.jsx", "prisma/seed.ts"],
+  "include": [
+    "**/*.js",
+    "**/*.jsx",
+    "prisma/seed.ts",
+    "app/routes/jokes.tsx",
+    "app/routes/index.tsx"
+  ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "isolatedModules": true,
