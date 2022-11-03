@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLoaderData } from "@remix-run/react";
 import Button from "../Components/Button";
 import Card from "../Components/Card";
@@ -6,8 +5,8 @@ import { db } from "../utils/db.server";
 import type { LoaderFunction } from "@remix-run/node";
 
 export let loader: LoaderFunction = async ({ request }) => {
-  let jokes = await db.joke.findMany();
-  return jokes;
+  let musicians = await db.musician.findMany();
+  return musicians;
 };
 
 export default function Index() {
@@ -30,9 +29,9 @@ export default function Index() {
             </Link>
           </div>
           <div className="flex flex-wrap justify-evenly">
-            {data.map((joke) => (
-              <div className="m-20" key={joke.id}>
-                <Card joke={joke} />
+            {data.map((musician) => (
+              <div className="m-20" key={musician.id}>
+                <Card musician={musician} />
               </div>
             ))}
           </div>

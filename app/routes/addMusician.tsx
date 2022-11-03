@@ -1,6 +1,7 @@
+import React from "react";
 import { Link } from "@remix-run/react";
-import Button from "~/Components/Button";
-import Card from "~/Components/Card";
+import Button from "../Components/Button";
+import Card from "../Components/Card";
 
 function addMusician() {
   return (
@@ -20,7 +21,6 @@ function addMusician() {
               <Button title="Accueil" />
             </Link>
           </div>
-          <Card />
         </div>
       </div>
     </div>

@@ -1,25 +1,26 @@
+import React from "react";
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import type { Joke } from "@prisma/client";
+import type { Musician } from "@prisma/client";
 
-import { db } from "~/utils/db.server";
+import { db } from "../utils/db.server";
 
-type LoaderData = { jokes: Array<Joke> };
+type LoaderData = { musicians: Array<Musician> };
 
 export const loader: LoaderFunction = async () => {
   const data: LoaderData = {
-    jokes: await db.joke.findMany(),
+    musicians: await db.musician.findMany(),
   };
   return json(data);
 };
 
-export default function Jokes() {
+export default function Musicians() {
   const data = useLoaderData<LoaderData>();
   return (
     <ul>
-      {data.jokes.map((joke) => (
-        <li key={joke.id}>{joke.name}</li>
+      {data.musicians.map((musician) => (
+        <li key={musician.id}>{musician.name}</li>
       ))}
     </ul>
   );
