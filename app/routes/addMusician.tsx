@@ -1,6 +1,25 @@
 import React from "react";
 import { Link } from "@remix-run/react";
 import Button from "../Components/Button";
+import type { ActionFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
+import { db } from "../utils/db.server";
+
+export const action: ActionFunction = async ({ request }) => {
+  const form = await request.formData();
+  const name = form.get("name");
+  const instrument = form.get("instrument");
+  // we do this type check to be extra sure and to make TypeScript happy
+  // we'll explore validation next!
+  if (typeof name !== "string" || typeof instrument !== "string") {
+    throw new Error(`Form not submitted correctly.`);
+  }
+
+  const fields = { name, instrument };
+
+  const musician = await db.musician.create({ data: fields });
+  return redirect(`/`);
+};
 
 function addMusician() {
   return (
@@ -20,38 +39,43 @@ function addMusician() {
               <Button title="Accueil" />
             </Link>
           </div>
-          <div>
-            <p>Add your own hilarious joke</p>
-            <form method="post">
-              <div>
-                <label>
-                  Name: <input type="text" name="name" />
-                </label>
-              </div>
-              <div>
-                <label>
-                  Content: <textarea name="content" />
-                </label>
-              </div>
-              <div>
-                <select
-                  id="instrument"
-                  name="instrument"
-                  autocomplete="instrument"
-                  className="px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                >
-                  <option>Piano</option>
-                  <option>Guitare</option>
-                  <option>Trompette</option>
-                  <option>Autre</option>
-                </select>
-              </div>
-              <div>
-                <button type="submit" className="button">
-                  Add
-                </button>
-              </div>
-            </form>
+          <div class="flex items-center justify-center p-12">
+            <div class="mx-auto w-full max-w-[550px]">
+              <form method="post">
+                <div class="mb-5" className="block mb-3 text-base font-medium">
+                  <label>
+                    Nom:
+                    <input
+                      type="text"
+                      name="name"
+                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    />
+                  </label>
+                </div>
+                <div class="mb-5" className="block mb-3 text-base font-medium">
+                  <label>Instrument:</label>
+                  <select
+                    id="instrument"
+                    name="instrument"
+                    autocomplete="instrument"
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  >
+                    <option>Piano</option>
+                    <option>Guitare</option>
+                    <option>Trompette</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    className="p-4 text-xl font-medium transition duration-200 ease-in-out bg-gray-900 button rounded-xl hover:shadow-lg hover:bg-indigo-600 hover:text-white"
+                  >
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
