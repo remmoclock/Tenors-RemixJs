@@ -2,16 +2,16 @@ import { Link, useLoaderData } from "@remix-run/react";
 import Button from "../Components/Button";
 import Card from "../Components/Card";
 import { db } from "../utils/db.server";
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
 
-export let loader: LoaderFunction = async ({ request }) => {
+export let loader = async ({ request }: LoaderArgs) => {
   let musicians = await db.musician.findMany();
-  return musicians;
+  return json(musicians);
 };
 
 export default function Index() {
-  let data = useLoaderData();
-  console.log("data", data);
+  let data = useLoaderData<typeof loader>();
 
   return (
     <div className="w-full h-full p-10 text-gray-400 bg-black font-inter">
@@ -24,14 +24,17 @@ export default function Index() {
             </p>
           </div>
           <div id="homepage" className="p-6 m-10 text-center">
-            <Link to="/addMusician">
+            <Link to="/musicians/new">
               <Button title="Ajouter un musicien" />
             </Link>
           </div>
           <div className="flex flex-wrap justify-evenly">
             {data.map((musician) => (
-              <div className="m-20" key={musician.id}>
+              <div className="gap-2 m-20 text-center" key={musician.id}>
                 <Card musician={musician} />
+                <Link to={`musicians/${musician.id}`}>
+                  <Button title="Modifier" />
+                </Link>
               </div>
             ))}
           </div>
